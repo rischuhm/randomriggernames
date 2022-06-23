@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'RopeFont';
+            src: url('RopeMf-WVA9.ttf');
+        }
+
+        h1 {
+            font-family: "RopeFont";
+            font-size: 5em;
+            font-weight: 100;
+        }
+        body{
+            background-color: #293133;
+        }
+
+        p,h1,h2{
+            color:white
+        }
+
+    </style>
+
+    <title>Rigger Randomizer</title>
+
+
+</head>
+
+<body>
+    <div id="app" class="text-center">
+
+        <h2 class="display-1 pt-5 pt-md-0">Rigger Randomizer</h2>
+        <p class=" pt-3 pt-md-5">Create your own random rigger name!</p>
+        <div class="btn btn-outline-light btn-lg" @click="createName()">GO!</div>
+
+        <h1 class="pt-5">{{name}}</h1>
+    </div>
+
+<footer class="d-flex align-items-center justify-content-center" style="position: absolute;bottom:0;height: 20px;left:0;right:0">
+    <p class="text-center" >Made with &hearts; by schlampus</p>
+
+</footer>
+</body>
+
+<script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+            return {
+                namesList: ["Tie", "Bound", "Bind", "Nawa", "Ryu", "Sada", "Knot", "Asanawa", "Kemono", "Bara", "Hana",
+                    "Kibishi", "Tora", "Warumono", "Gote", "Kinbaku"],
+                surNameList: ["-sama", "-dono", "-yarou"],
+                name: ""
+            }
+        },
+        methods: {
+            createName() {
+                let randomName1 = this.namesList[this.randomNum(this.namesList.length)]
+                let fullNameList = this.namesList.concat(this.surNameList)
+                let randomName2 = fullNameList[this.randomNum(fullNameList.length)]
+                if (randomName2.includes("-")){
+                    this.name = randomName1+randomName2
+                }
+                else{
+                    this.name= randomName1+" "+randomName2
+                }
+            },
+            randomNum(listLength){ return Math.floor(Math.random() * listLength);
+            },
+        }
+    }
+    ).mount('#app')
+</script>
+
+</html>
