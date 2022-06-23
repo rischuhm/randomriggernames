@@ -26,7 +26,7 @@
             background-color: #293133;
         }
 
-        p,h1,h2{
+        p,h1,h2,small{
             color:white
         }
 
@@ -41,10 +41,13 @@
     <div id="app" class="text-center">
 
         <h2 class="display-1 pt-5 pt-md-0">Rigger Randomizer</h2>
-        <p class=" pt-3 pt-md-5">Create your own random rigger name!</p>
+        <p class=" pt-3 pt-md-5">Create your own random rigger name! <br>
+            Currently, there are {{amount}} possible variations</p>
+    
         <div class="btn btn-outline-light btn-lg" @click="createName()">GO!</div>
 
-        <h1 class="pt-5">{{name}}</h1>
+        <h1 class="mb-0 pt-5">{{name}}</h1>
+        <small class="mt-0">{{name}}</small>
     </div>
 
 <footer class="d-flex align-items-center justify-content-center" style="position: absolute;bottom:0;height: 20px;left:0;right:0">
@@ -60,9 +63,15 @@
         data() {
             return {
                 namesList: ["Tie", "Bound", "Bind", "Nawa", "Ryu", "Sada", "Knot", "Asanawa", "Kemono", "Bara", "Hana",
-                    "Kibishi", "Tora", "Warumono", "Gote", "Kinbaku"],
+                    "Kibishi", "Tora", "Warumono", "Gote", "Kinbaku","Knight","Neko", "Hishi", "Ninja", "Futo", "Geisha", 
+                    "Gaijin","Wild"],
                 surNameList: ["-sama", "-dono", "-yarou"],
-                name: ""
+                name: "",
+            }
+        },
+        computed:{
+            amount(){
+                return this.namesList.length * (this.namesList.concat(this.surNameList)).length
             }
         },
         methods: {
